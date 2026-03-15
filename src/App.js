@@ -332,9 +332,8 @@ async function processAndLog(text, forceEstimate = false) {
 setLoading(true); setError("");
 try {
 const classRaw = await apiCall(CLASSIFIER_PROMPT, text, 300);
-const classification = JSON.parse(classRaw.replace(/`json|`/g, "").trim());
+const classification = JSON.parse(classRaw.replace(/```json|```/g, "").trim());
 
-```
   const shouldLog = classification.specificity === "specific" || forceEstimate || defaultMode === "estimate";
 
   if (shouldLog) {
